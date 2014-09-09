@@ -108,8 +108,8 @@ public class Chemotaxis extends PApplet {
  	int r,g,b;
  	Food()
  	{
- 		foodx = -500;
- 		foody = -500;
+ 		foodx = 250;
+ 		foody = 250;
  		r = 0;
  		g = 0;
  		b = 0;
@@ -129,9 +129,12 @@ public class Chemotaxis extends PApplet {
  		ellipse(foodx, foody, 10, 10);
  		if ((edward.myX == foodx) && (edward.myY == foody))
  		{
- 			foodx = -500;
- 			foody = -500;
+ 			foodx = 250;
+ 			foody = 250;
  			bacteriaChangeColor = true;
+ 			r = 255;
+ 			g = 255;
+ 			b = 255;
  		}
  	}
  }

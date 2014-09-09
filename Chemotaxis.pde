@@ -1,6 +1,7 @@
  Bacteria edward;//declare bacteria variables here   
  Food poop = new Food();
  boolean bacteriaChangeColor = false;
+ boolean foodReset = false;
  void setup()   
  {     
  	size(500,500);//initialize bacteria variables here   
@@ -76,6 +77,7 @@
  			g = poop.g;
  			b = poop.b;
  			bacteriaChangeColor = false;
+ 			foodReset = true;
  		}
  		fill(r,g,b);
  		ellipse(myX,myY,20,20);
@@ -92,8 +94,8 @@
  	int r,g,b;
  	Food()
  	{
- 		foodx = -500;
- 		foody = -500;
+ 		foodx = 250;
+ 		foody = 250;
  		r = 0;
  		g = 0;
  		b = 0;
@@ -116,6 +118,12 @@
  			foodx = -500;
  			foody = -500;
  			bacteriaChangeColor = true;
+ 		}
+ 		if (foodReset == true)
+ 		{
+ 			foodx = 250;
+ 			foody = 250;
+ 			
  		}
  	}
  }
