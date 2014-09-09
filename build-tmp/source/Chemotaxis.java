@@ -1,13 +1,29 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
+
  Bacteria edward;//declare bacteria variables here   
  Food poop = new Food();
  boolean bacteriaChangeColor = false;
- void setup()   
+ public void setup()   
  {     
  	size(500,500);//initialize bacteria variables here   
  	background(0);
  	edward = new Bacteria(250,250,255,255,255);
  }   
- void draw()   
+ public void draw()   
  {
  	frameRate(10);
  	background(0);
@@ -15,7 +31,7 @@
  	edward.move();//move and show the bacteria 
  	edward.show();  
  }  
- void mouseClicked()
+ public void mouseClicked()
  {
  	poop.newFoodLocation();
  }
@@ -34,7 +50,7 @@
  		g = c2;
  		b = c3;
  	}
- 	void move()
+ 	public void move()
  	{
  		if (myX < poop.foodx)
  		{
@@ -67,7 +83,7 @@
  		}
 
  	}
- 	void show()
+ 	public void show()
  	{
  		noStroke();
  		if (bacteriaChangeColor == true)
@@ -98,7 +114,7 @@
  		g = 0;
  		b = 0;
  	}
- 	void newFoodLocation()
+ 	public void newFoodLocation()
  	{
  		foodx = mouseX;
  		foody = mouseY;
@@ -106,7 +122,7 @@
  		g = (int)(Math.random()*256);
  		b = (int)(Math.random()*256);
  	}
- 	void show()
+ 	public void show()
  	{
  		noStroke();
  		fill(r,g,b);
@@ -119,3 +135,12 @@
  		}
  	}
  }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
