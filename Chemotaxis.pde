@@ -1,11 +1,12 @@
- Bacteria edward;//declare bacteria variables here   
+Bacteria edward;//declare bacteria variables here   
  Food poop = new Food();
  boolean bacteriaChangeColor = false;
+ boolean foodReset = false;
  void setup()   
  {     
  	size(500,500);//initialize bacteria variables here   
  	background(0);
- 	edward = new Bacteria(250,250,255,255,255);
+ 	edward = new Bacteria(250,250);
  }   
  void draw()   
  {
@@ -23,16 +24,12 @@
  {     
  	int myX;
  	int myY;
- 	int r;
- 	int g;
- 	int b;
- 	Bacteria(int x, int y, int c1, int c2, int c3)
+ 	color c;
+ 	Bacteria(int x, int y)
  	{
  		myX = x;
  		myY = y;
- 		r = c1;
- 		g = c2;
- 		b = c3;
+ 		c = color(255);
  	}
  	void move()
  	{
@@ -60,6 +57,42 @@
  				myY = myY + (int)(Math.random()*6-4);
  			}
  		}
+ 		else if(myX > 500)
+ 		{
+ 			myX = myX + (int)(Math.random()*6-4);
+ 			{
+ 				if (myY < 500)
+ 				{
+ 					myY = myY + (int)(Math.random()*6-2);
+ 				}
+ 				else if (myY > 500)
+ 				{
+ 					myY = myY + (int)(Math.random()*6-4);
+ 				}
+ 				else
+ 				{
+ 					myY = myY + (int)(Math.random()*6-3);
+ 				}
+ 			}
+ 		}
+ 		else if(myX < 500)
+ 		{
+ 			myX = myX + (int)(Math.random()*6-2);
+ 			{
+ 				if (myY < 500)
+ 				{
+ 					myY = myY + (int)(Math.random()*6-2);
+ 				}
+ 				else if (myY > 500)
+ 				{
+ 					myY = myY + (int)(Math.random()*6-4);
+ 				}
+ 				else
+ 				{
+ 					myY = myY + (int)(Math.random()*6-3);
+ 				}
+ 			}
+ 		}
  		else
  		{
  			myX = myX + (int)(Math.random()*6-3);
@@ -72,12 +105,11 @@
  		noStroke();
  		if (bacteriaChangeColor == true)
  		{
- 			r = poop.r;
- 			g = poop.g;
- 			b = poop.b;
+ 			c = poop.c;
  			bacteriaChangeColor = false;
+ 			foodReset = true;
  		}
- 		fill(r,g,b);
+ 		fill(c);
  		ellipse(myX,myY,20,20);
  		int myX2 = myX+(int)(Math.random()*30-15);
  		int myY2 = myY+(int)(Math.random()*30-15);
@@ -89,33 +121,33 @@
  {
  	int foodx;
  	int foody;
- 	int r,g,b;
+ 	color c;
  	Food()
  	{
- 		foodx = -500;
- 		foody = -500;
- 		r = 0;
- 		g = 0;
- 		b = 0;
+ 		foodx = 250;
+ 		foody = 250;
+ 		c = color(255);
  	}
  	void newFoodLocation()
  	{
  		foodx = mouseX;
  		foody = mouseY;
- 		r = (int)(Math.random()*256);
- 		g = (int)(Math.random()*256);
- 		b = (int)(Math.random()*256);
+ 		c = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
  	}
  	void show()
  	{
  		noStroke();
- 		fill(r,g,b);
+ 		fill(c);
  		ellipse(foodx, foody, 10, 10);
- 		if ((edward.myX == foodx) && (edward.myY == foody))
+ 		if (((edward.myX) != 250 && (edward.myY) != 250) && ((edward.myX == foodx) && (edward.myY == foody)))
  		{
- 			foodx = -500;
- 			foody = -500;
  			bacteriaChangeColor = true;
+ 		}
+ 		if (foodReset == true)
+ 		{
+ 			foodx = edward.myX;
+ 			foody = edward.myY;
+ 			foodReset = false;
  		}
  	}
  }
