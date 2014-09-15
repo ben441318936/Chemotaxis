@@ -1,12 +1,17 @@
-Bacteria edward;//declare bacteria variables here   
- Food poop = new Food();
- boolean bacteriaChangeColor = false;
- boolean foodReset = false;
- void setup()   
- {     
+Bacteria edward;//declare bacteria variables here  
+Bacteria [] colony = new Bacteria[1];
+Food poop = new Food();
+boolean bacteriaChangeColor = false;
+boolean foodReset = false;
+void setup()   
+{     
  	size(500,500);//initialize bacteria variables here   
  	background(0);
  	edward = new Bacteria(250,250);
+ 	for (int i = 0; i < colony.length; i++) 
+ 	{
+ 		colony[i] = new Bacteria ((int)(Math.random()*501),(int)(Math.random()*501));
+ 	}
  }   
  void draw()   
  {
@@ -15,6 +20,11 @@ Bacteria edward;//declare bacteria variables here
  	poop.show();
  	edward.move();//move and show the bacteria 
  	edward.show();  
+ 	for (int i = 0; i < colony.length; i++)
+ 	{
+ 		colony[i].move();
+ 		colony[i].show();
+ 	}
  }  
  void mouseClicked()
  {
